@@ -1,0 +1,104 @@
+{
+  "manifest_version": 3,
+  "name": "Seus Canais",
+  "version": "1.0.0",
+  "default_locale": "pt_BR",
+  "description": "__MSG_appDesc__",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "tabs",
+    "offscreen",
+    "contextMenus",
+    "idle",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://www.twitch.tv/*",
+    "https://kick.com/*",
+    "https://gql.twitch.tv/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/live_chat*"
+      ],
+      "js": [
+        "chat.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.twitch.tv/*",
+        "https://kick.com/*"
+      ],
+      "js": [
+        "chat.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://www.twitch.tv/*",
+        "https://kick.com/*"
+      ],
+      "js": [
+        "i18n.js",
+        "yt-live.js",
+        "toast.js",
+        "import.js",
+        "clip.js",
+        "island.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "yt-live.js",
+        "likes.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "mark-moment": {
+      "suggested_key": {
+        "default": "Alt+Shift+M"
+      },
+      "description": "__MSG_cmdMark__"
+    },
+    "clip-now": {
+      "suggested_key": {
+        "default": "Alt+Shift+K"
+      },
+      "description": "__MSG_cmdClip__"
+    }
+  }
+}

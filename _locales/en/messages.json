@@ -1,0 +1,11 @@
+{
+  "appDesc": {
+    "message": "Notifies you when your YouTube, Twitch and Kick channels go live, keeps your watch history and has achievements for stream fans."
+  },
+  "cmdMark": {
+    "message": "Mark a moment in the open stream"
+  },
+  "cmdClip": {
+    "message": "Clip the open stream (the site's clip or the last seconds)"
+  }
+}

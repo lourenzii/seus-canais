@@ -1,0 +1,11 @@
+{
+  "appDesc": {
+    "message": "Avisa quando seus canais do YouTube, Twitch e Kick entram ao vivo, guarda seu histórico e tem conquistas pra quem acompanha lives."
+  },
+  "cmdMark": {
+    "message": "Marcar momento da live aberta"
+  },
+  "cmdClip": {
+    "message": "Cortar a live aberta (clipe do site ou últimos segundos)"
+  }
+}

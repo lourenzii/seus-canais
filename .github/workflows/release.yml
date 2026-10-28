@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar pacote
+        run: zip -r "seus-canais-${GITHUB_REF_NAME}.zip" . -x ".git/*" ".github/*" "prints/*"
+
+      - name: Publicar release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --force origin "refs/tags/${GITHUB_REF_NAME}:refs/tags/${GITHUB_REF_NAME}"
+          git tag -l --format='%(contents)' "${GITHUB_REF_NAME}" > notas.md
+          gh release create "${GITHUB_REF_NAME}" "seus-canais-${GITHUB_REF_NAME}.zip" \
+            --title "Seus Canais ${GITHUB_REF_NAME}" \
+            --notes-file notas.md
